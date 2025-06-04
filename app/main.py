@@ -1,13 +1,9 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import List, Tuple
-from app.services.map_service import generate_map
+from app.services.map import generate_map
+from app.schemas.markers import MarkerList
+
 
 app = FastAPI(title="Map Generation Microservice")
-
-
-class MarkerList(BaseModel):
-    markers: List[Tuple[float, float]]
 
 
 @app.post("/generate-map/")

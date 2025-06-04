@@ -1,5 +1,5 @@
 import pytest
-from app.services.map_service import generate_map
+from app.services.map import generate_map
 import os
 
 

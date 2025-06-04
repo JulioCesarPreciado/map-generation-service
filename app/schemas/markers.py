@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from typing import List, Optional
 
 
@@ -11,4 +11,6 @@ class MapPoint(BaseModel):
 
 
 class MapPointList(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
     markers: List[MapPoint] = Field(..., alias="markers")

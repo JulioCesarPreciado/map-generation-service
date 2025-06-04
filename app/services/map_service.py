@@ -25,10 +25,7 @@ def generate_map(markers: List[Tuple[float, float]]) -> str:
         folium.Marker(location=(lat, lon)).add_to(cluster)
 
     with NamedTemporaryFile(
-        suffix='.html',
-        delete=False,
-        mode='w',
-        encoding='utf-8'
+        suffix=".html", delete=False, mode="w", encoding="utf-8"
     ) as tmp:
         map.save(tmp.name)
         return tmp.name

@@ -1,6 +1,14 @@
-from pydantic import BaseModel
-from typing import List, Tuple
+from pydantic import BaseModel, Field
+from typing import List, Optional
 
 
-class MarkerList(BaseModel):
-    markers: List[Tuple[float, float]]
+class MapPoint(BaseModel):
+    lat: float
+    lon: float
+    label: Optional[str] = None
+    description: Optional[str] = None
+    color: Optional[str] = None
+
+
+class MapPointList(BaseModel):
+    markers: List[MapPoint] = Field(..., alias="markers")

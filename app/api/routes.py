@@ -19,7 +19,8 @@ async def create_map_from_file(file: UploadFile = File(...)):
     try:
         contents = await file.read()
         parsed = MapPointList.model_validate_json(contents)
-        path = generate_map(parsed.markers)
+        markers = [(m.lat, m.lon) for m in parsed.markers]
+        path = generate_map(markers)
         return {"map_file_path": path}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

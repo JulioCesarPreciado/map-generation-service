@@ -11,8 +11,7 @@ security = HTTPBearer()
 @router.post("/generate-map", summary="Generar un mapa con marcadores")
 def create_map(data: MapPointList, user=Depends(get_current_user)):
     try:
-        markers = [(m.lat, m.lon) for m in data.markers]
-        path = generate_map(markers)
+        path = generate_map(data.markers)
         return {"map_file_path": path}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -25,8 +24,7 @@ async def create_map_from_file(
     try:
         contents = await file.read()
         parsed = MapPointList.model_validate_json(contents)
-        markers = [(m.lat, m.lon) for m in parsed.markers]
-        path = generate_map(markers)
+        path = generate_map(parsed.markers)
         return {"map_file_path": path}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

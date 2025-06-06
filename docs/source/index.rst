@@ -12,5 +12,6 @@ This project provides a service for managing and serving map data, including mar
    :caption: API Reference:
 
    main
+   config_cors
    services_map
    schemas_markers

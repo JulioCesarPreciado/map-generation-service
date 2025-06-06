@@ -5,7 +5,9 @@ import os
 
 def test_generate_map_creates_file():
     markers = [(19.4326, -99.1332), (20.6597, -103.3496)]
-    file_path = generate_map(markers)
+    public_path = generate_map(markers)
+    # Convert the public path to the real file system path
+    file_path = os.path.join("static/maps", os.path.basename(public_path))
     assert os.path.exists(file_path)
     assert file_path.endswith(".html")
 

@@ -23,3 +23,6 @@ format:
 
 freeze:
 	$(PIP) freeze > requirements.txt
+
+docs:
+	cd docs && make html

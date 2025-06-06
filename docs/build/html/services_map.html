@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Map Service &#8212; Map Service 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Marker Schema" href="schemas_markers.html" />
+    <link rel="prev" title="Main Module" href="main.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-app.services.map">
+<span id="map-service"></span><h1>Map Service<a class="headerlink" href="#module-app.services.map" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.map.add_marker_to_cluster">
+<span class="sig-prename descclassname"><span class="pre">app.services.map.</span></span><span class="sig-name descname"><span class="pre">add_marker_to_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="schemas_markers.html#app.schemas.markers.MapPoint" title="app.schemas.markers.MapPoint"><span class="pre">MapPoint</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MarkerCluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.map.add_marker_to_cluster" title="Link to this definition">¶</a></dt>
+<dd><p>Adds a single marker to the given MarkerCluster, with an optional popup.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>marker (MapPoint): The map point data to render on the map.
+cluster (MarkerCluster): The cluster to which the marker will be added.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.map.build_popup">
+<span class="sig-prename descclassname"><span class="pre">app.services.map.</span></span><span class="sig-name descname"><span class="pre">build_popup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="schemas_markers.html#app.schemas.markers.MapPoint" title="app.schemas.markers.MapPoint"><span class="pre">MapPoint</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Popup</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#app.services.map.build_popup" title="Link to this definition">¶</a></dt>
+<dd><p>Builds a styled Bootstrap popup for a given map marker.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>marker (MapPoint): A map point that may contain label, description,</dt><dd><p>and an optional URL button.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Optional[folium.Popup]: A folium popup if there is any content,</dt><dd><p>otherwise None.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.map.create_map">
+<span class="sig-prename descclassname"><span class="pre">app.services.map.</span></span><span class="sig-name descname"><span class="pre">create_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="schemas_markers.html#app.schemas.markers.MapPoint" title="app.schemas.markers.MapPoint"><span class="pre">MapPoint</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Map</span></span></span><a class="headerlink" href="#app.services.map.create_map" title="Link to this definition">¶</a></dt>
+<dd><p>Initializes a Folium map and adds clustered markers.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>markers (List[MapPoint]): A list of MapPoint instances to plot on the map.</p>
+</dd>
+<dt>Returns:</dt><dd><p>folium.Map: A map object containing the clustered markers.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.map.generate_map">
+<span class="sig-prename descclassname"><span class="pre">app.services.map.</span></span><span class="sig-name descname"><span class="pre">generate_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">markers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="schemas_markers.html#app.schemas.markers.MapPoint" title="app.schemas.markers.MapPoint"><span class="pre">MapPoint</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.services.map.generate_map" title="Link to this definition">¶</a></dt>
+<dd><p>Generates an HTML map with markers and saves it in static/maps.</p>
+<p>This is the main entry point for map creation, orchestrating the process of
+rendering, clustering, and exporting.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>markers (List[MapPoint]): List of map points with optional</dt><dd><p>label, description, and button.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>str: Public URL path to the generated HTML file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.map.save_map_to_static">
+<span class="sig-prename descclassname"><span class="pre">app.services.map.</span></span><span class="sig-name descname"><span class="pre">save_map_to_static</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Map</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.services.map.save_map_to_static" title="Link to this definition">¶</a></dt>
+<dd><p>Saves the given map object as an HTML file in the static/maps directory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>map_obj (folium.Map): The Folium map object to save.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: A relative URL path to the saved HTML file for browser access.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Map Service</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">Main Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Map Service</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#app.services.map.add_marker_to_cluster"><code class="docutils literal notranslate"><span class="pre">add_marker_to_cluster()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app.services.map.build_popup"><code class="docutils literal notranslate"><span class="pre">build_popup()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app.services.map.create_map"><code class="docutils literal notranslate"><span class="pre">create_map()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app.services.map.generate_map"><code class="docutils literal notranslate"><span class="pre">generate_map()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app.services.map.save_map_to_static"><code class="docutils literal notranslate"><span class="pre">save_map_to_static()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="schemas_markers.html">Marker Schema</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="main.html" title="previous chapter">Main Module</a></li>
+      <li>Next: <a href="schemas_markers.html" title="next chapter">Marker Schema</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, JulioCesarPreciado.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/services_map.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

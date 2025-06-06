@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+import os
 
 
 def configure_static(app: FastAPI):
@@ -13,4 +14,6 @@ def configure_static(app: FastAPI):
     storage services like MinIO or Amazon S3, using custom middleware
     or URL redirection through a CDN or reverse proxy.
     """
-    app.mount("/static", StaticFiles(directory="static"), name="static")
+    static_path = "static"
+    if os.path.exists(static_path):
+        app.mount("/static", StaticFiles(directory=static_path), name="static")

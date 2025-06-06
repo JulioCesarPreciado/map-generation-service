@@ -8,6 +8,8 @@ class MapPoint(BaseModel):
     label: Optional[str] = None
     description: Optional[str] = None
     color: Optional[str] = None
+    btnUrl: Optional[str] = None
+    btnText: Optional[str] = "More"
 
 
 class MapPointList(BaseModel):

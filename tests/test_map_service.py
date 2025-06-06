@@ -7,7 +7,7 @@ from app.schemas.markers import MapPoint
 def test_generate_map_creates_file():
     markers = [
         MapPoint(lat=20.6736, lon=-103.344, label="Centro"),
-        MapPoint(lat=20.6765, lon=-103.347, label="Templo Expiatorio")
+        MapPoint(lat=20.6765, lon=-103.347, label="Templo Expiatorio"),
     ]
     public_path = generate_map(markers)
     # Convert the public path to the real file system path

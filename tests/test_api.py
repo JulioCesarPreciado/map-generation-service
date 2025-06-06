@@ -27,7 +27,7 @@ def test_generate_map_from_valid_file():
                 "description": "Zona Centro de Guadalajara",
                 "color": "red",
                 "btnUrl": "https://es.wikipedia.org/wiki/Guadalajara_(Jalisco)",
-                "btnText": "Ver más"
+                "btnText": "Ver más",
             },
             {
                 "lat": 20.6765,
@@ -36,8 +36,8 @@ def test_generate_map_from_valid_file():
                 "description": "Templo de estilo neogótico.",
                 "color": "blue",
                 "btnUrl": "https://goo.gl/maps/FzBdVj9KiwfUXYgX7",
-                "btnText": "Ir al mapa"
-            }
+                "btnText": "Ir al mapa",
+            },
         ]
     }
     file = create_temp_json_file(data)
@@ -100,7 +100,7 @@ def test_generate_map_from_file_with_large_data():
 def test_generate_map_creates_file():
     markers = [
         MapPoint(lat=20.6736, lon=-103.344, label="Centro"),
-        MapPoint(lat=20.6765, lon=-103.347, label="Templo Expiatorio")
+        MapPoint(lat=20.6765, lon=-103.347, label="Templo Expiatorio"),
     ]
     public_path = generate_map(markers)
     file_path = os.path.join("static/maps", os.path.basename(public_path))

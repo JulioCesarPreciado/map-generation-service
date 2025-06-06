@@ -13,8 +13,11 @@ from app.config.static import configure_static
 #: FastAPI application instance for the map generation microservice
 app = FastAPI(title="Map Generation Microservice")
 
-configure_cors(app)  # Apply CORS settings to allow cross-origin requests
+# Apply CORS settings to allow cross-origin requests
+configure_cors(app)
 
-app.include_router(routes.router, prefix="/api")  # Register API routes
+# Register API routes
+app.include_router(routes.router, prefix="/api")
 
-configure_static(app)  # Serve static content like generated HTML map files
+# Serve static content like generated HTML map files
+configure_static(app)

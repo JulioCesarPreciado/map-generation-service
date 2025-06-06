@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Generador de Mapas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Generador de Mapas con Marcadores</h1>
+  <form id="mapForm">
+    <label for="jsonInput">Ingresa marcadores (lat, lon, opcionales: label, color):</label><br>
+    <textarea id="jsonInput">
+{
+  "markers": [
+    {
+      "lat": 20.6736,
+      "lon": -103.344,
+      "label": "Centro",
+      "description": "Zona Centro de Guadalajara",
+      "color": "red",
+      "btnUrl": "https://es.wikipedia.org/wiki/Guadalajara_(Jalisco)",
+      "btnText": "Ver más"
+    },
+    {
+      "lat": 20.6765,
+      "lon": -103.347,
+      "label": "Templo Expiatorio",
+      "description": "Templo de estilo neogótico.",
+      "color": "blue",
+      "btnUrl": "https://goo.gl/maps/FzBdVj9KiwfUXYgX7",
+      "btnText": "Ir al mapa"
+    },
+    {
+      "lat": 20.6789,
+      "lon": -103.345,
+      "label": "Parque Rojo",
+      "description": "Parque emblemático frente al museo.",
+      "color": "green",
+      "btnUrl": "https://guadalajara.net/",
+      "btnText": "Sitio oficial"
+    }
+  ]
+}
+</textarea><br>
+    <button type="submit">Generar Mapa</button>
+  </form>
+
+  <iframe id="mapFrame" src=""></iframe>
+
+  <script>
+    const form = document.getElementById("mapForm");
+    const jsonInput = document.getElementById("jsonInput");
+    const mapFrame = document.getElementById("mapFrame");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      try {
+        const payload = JSON.parse(jsonInput.value);
+        const response = await fetch("http://localhost:8000/api/generate-map", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer secreto-super-token"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        console.log();
+
+        const result = await response.json();
+
+        if (response.ok && result.map_file_path) {
+          // Usar la URL absoluta del backend
+          mapFrame.src = "http://localhost:8000" + result.map_file_path;
+        } else {
+          alert("Error al generar el mapa: " + JSON.stringify(result));
+        }
+      } catch (err) {
+        alert("Entrada inválida o error de red");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

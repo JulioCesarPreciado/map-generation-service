@@ -19,7 +19,10 @@ def build_popup(marker: MapPoint) -> Optional[folium.Popup]:
     if marker.btnUrl:
         text = marker.btnText or "More"
         parts.append(
-            f'<a href="{marker.btnUrl}" target="_blank"><button>{text}</button></a>'
+            (
+                f'<a href="{marker.btnUrl}" target="_blank" '
+                f'class="btn btn-primary text-white">{text}</a>'
+            )
         )
     return folium.Popup("".join(parts), max_width=250) if parts else None
 

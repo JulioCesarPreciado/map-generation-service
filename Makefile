@@ -24,5 +24,5 @@ format:
 freeze:
 	$(PIP) freeze > requirements.txt
 
-docs:
+doc:
 	cd docs && make html

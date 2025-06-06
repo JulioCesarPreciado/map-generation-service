@@ -1,10 +1,14 @@
 import pytest
 from app.services.map import generate_map
 import os
+from app.schemas.markers import MapPoint
 
 
 def test_generate_map_creates_file():
-    markers = [(19.4326, -99.1332), (20.6597, -103.3496)]
+    markers = [
+        MapPoint(lat=20.6736, lon=-103.344, label="Centro"),
+        MapPoint(lat=20.6765, lon=-103.347, label="Templo Expiatorio")
+    ]
     public_path = generate_map(markers)
     # Convert the public path to the real file system path
     file_path = os.path.join("static/maps", os.path.basename(public_path))

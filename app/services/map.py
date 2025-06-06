@@ -1,7 +1,8 @@
 import folium
 from folium.plugins import MarkerCluster
 from typing import List, Tuple
-from tempfile import NamedTemporaryFile
+import os
+import uuid
 
 
 def generate_map(markers: List[Tuple[float, float]]) -> str:
@@ -18,14 +19,17 @@ def generate_map(markers: List[Tuple[float, float]]) -> str:
     if not markers:
         raise ValueError("Markers list cannot be empty")
 
-    map = folium.Map(location=markers[0], zoom_start=12)
-    cluster = MarkerCluster().add_to(map)
+    STATIC_MAPS_DIR = "static/maps"
+    os.makedirs(STATIC_MAPS_DIR, exist_ok=True)
+
+    map_obj = folium.Map(location=markers[0], zoom_start=12)
+    cluster = MarkerCluster().add_to(map_obj)
 
     for lat, lon in markers:
         folium.Marker(location=(lat, lon)).add_to(cluster)
 
-    with NamedTemporaryFile(
-        suffix=".html", delete=False, mode="w", encoding="utf-8"
-    ) as tmp:
-        map.save(tmp.name)
-        return tmp.name
+    file_name = f"{uuid.uuid4().hex}.html"
+    file_path = os.path.join(STATIC_MAPS_DIR, file_name)
+    map_obj.save(file_path)
+
+    return f"/static/maps/{file_name}"

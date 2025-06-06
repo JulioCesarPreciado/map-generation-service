@@ -40,14 +40,19 @@ def build_popup(marker: MapPoint) -> Optional[folium.Popup]:
 
 def add_marker_to_cluster(marker: MapPoint, cluster: MarkerCluster):
     """
-    Adds a single marker to the given MarkerCluster, with an optional popup.
+    Adds a single marker to the given MarkerCluster, with an optional popup and color.
 
     Args:
         marker (MapPoint): The map point data to render on the map.
         cluster (MarkerCluster): The cluster to which the marker will be added.
     """
     popup = build_popup(marker)
-    folium.Marker(location=(marker.lat, marker.lon), popup=popup).add_to(cluster)
+    icon = folium.Icon(color=marker.color) if getattr(marker, "color", None) else None
+    folium.Marker(
+        location=(marker.lat, marker.lon),
+        popup=popup,
+        icon=icon
+    ).add_to(cluster)
 
 
 def create_map(markers: List[MapPoint]) -> folium.Map:

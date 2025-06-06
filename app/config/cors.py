@@ -2,6 +2,7 @@
 This module defines the configuration function to enable Cross-Origin Resource
 Sharing (CORS) for the FastAPI application.
 """
+
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 

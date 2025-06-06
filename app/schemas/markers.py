@@ -15,6 +15,7 @@ class MapPoint(BaseModel):
         btnUrl (Optional[str]): URL that the popup button will open.
         btnText (Optional[str]): Text for the popup button (default is "More").
     """
+
     lat: float
     lon: float
     label: Optional[str] = None
@@ -33,6 +34,7 @@ class MapPointList(BaseModel):
     Attributes:
         markers (List[MapPoint]): A list of map point objects.
     """
+
     model_config = ConfigDict(populate_by_name=True)
 
     markers: List[MapPoint] = Field(..., alias="markers")
